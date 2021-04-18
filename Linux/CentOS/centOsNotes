@@ -1,0 +1,21 @@
+ls = show all files
+    -l = show file details
+
+
+mkdir = make a new folder 
+        go to folder first and create new folder
+
+cd = go to a folder
+cd ~ = go to my home directory
+
+pwd = show current folder full path
+
+mv = rename file|folder
+    - mv <src> <dest>
+        ex: mv myFile.txt toAnyFolder
+
+rm = remove file
+    -rf = remove files and folders
+        -rf <folderName>
+
+cp = copy a file to a different location
