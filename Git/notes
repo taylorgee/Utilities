@@ -1,0 +1,9 @@
+# show status
+git status
+
+# adding and committing files
+git add <file> | <files>
+git commit -m "<reason>"
+
+# push files to github
+git push
