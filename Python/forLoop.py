@@ -25,3 +25,10 @@ for number, friend in enumerate(friends):
 # zip = two lists at the same time
 for fruit, name in zip(fruits, friends):
     print(f'fruit:{fruit}\tname:{name}')
+    
+# range = print 0, 1, 2
+# fruits[number] = variable substitution
+for number in range(0, 3):
+    print(f'{number}: {fruits[number]}')
+    
+print(f'{fruits[2]}')
