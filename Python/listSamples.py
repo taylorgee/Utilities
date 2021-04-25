@@ -32,3 +32,12 @@ print(a)
 # get the second index of the list
 b = x[2]
 print(b)
+
+# len = the total items in a list
+total = len(fruits)
+print(f'\nthe total is: {total}')
+
+if len(fruits) > 10:
+    print('yes')
+else:
+    print('no')
