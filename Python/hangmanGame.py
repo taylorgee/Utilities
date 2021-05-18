@@ -1,6 +1,10 @@
 import sys 
 import os
 
+def playerGuessedRight(word):
+    os.system('clear')
+    print(f"\n{playersName}, you're right! The word is {word}")
+    
 topics = {
     'animals': ['gorilla', 'rhino', 'penguin'],
     'plants': ['cactus', 'ixia', 'rosemary']
@@ -9,8 +13,11 @@ topics = {
 currentTopic = None 
 os.system('clear')
 
+print("\nWelcome to Taylor's hangman game!")
+playersName = input('\nWhat is your name? ')
+
 while True:
-    topic = input(f'What topic would you like? \nEnter a=animals, b=plants ')
+    topic = input(f'\nHi {playersName}! What topic would you like? \n\nEnter a=animals, b=plants ')
     print(f'You selected topic: {topic}')
     
     if topic == 'a':
@@ -42,11 +49,24 @@ for choice in choices:
         os.system('clear')
         print(f'The topic is: {currentTopic}')
         print(f'\n\tGuess the word: {" ".join(guessingList)}')
-        print(f'\n\tHangman wrong guesses: {" ".join(hangmanList)}')
         print(f'\n\tLetters guessed: {playerGuessedList}')
         
-        guessCharacter = input(f'\nGuess a letter or the word: ')
+        guessCharacter = input(f'\n{playersName}, guess a letter or the word: ')
         
+        # player tries to guess the word 
+        if len(guessCharacter) > 1:
+            if guessCharacter == choice:
+                playerGuessedRight(choice)
+                # print(f'\n\tGuess the word: {" ".join(guessingList)}')
+                playAgain = input(f'\nYou win {playersName}! No fair! Do you want to play again? Y or N: ')
+                if playAgain in ['Y', 'y']:
+                    break
+                else:
+                    sys.exit('\nOk! Bye!\n')
+            else:
+                print('\nWrong guess!')
+                
+        # player guessed right
         if guessCharacter in choice:
             # index = choice.index(guessCharacter)
             indexes = []
@@ -56,17 +76,16 @@ for choice in choices:
                     
             for index in indexes:
                 guessingList[index] = guessCharacter
-        
+            
+        # player guessed wrong
         if guessCharacter not in choice:
             hangmanList[hangmanCurrentIndex] = hangman[hangmanCurrentIndex]
             hangmanCurrentIndex += 1
             playerGuessedList.append(guessCharacter)
         
         if hangman == ''.join(hangmanList): 
-            os.system('clear')
-            print(f'\nHangman wrong guesses: {" ".join(hangmanList)}')
-            print(f'\nThe word is: {choice}')
-            playAgain = input('\nYou lose! Taylor wins! YAY! Do you want to play again? Y or N: ')
+            playerGuessedRight(choice)
+            playAgain = input(f'\nYou lose {playersName}! Taylor wins! YAY! Do you want to play again? Y or N: ')
             if playAgain in ['Y', 'y']:
                 break
             else:
@@ -74,9 +93,8 @@ for choice in choices:
             
             
         if choice == ''.join(guessingList):
-            os.system('clear')
-            print(f'\n\tGuess the word: {" ".join(guessingList)}')
-            playAgain = input('\nYou win! No fair! Do you want to play again? Y or N: ')
+            playerGuessedRight(choice)
+            playAgain = input(f'\nYou win {playersName}! No fair! Do you want to play again? Y or N: ')
             if playAgain in ['Y', 'y']:
                 break
             else:
